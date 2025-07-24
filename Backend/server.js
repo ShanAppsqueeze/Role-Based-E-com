@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
 const contactSechma = require("./connection/contact-sechma");
+const ProductSechma = require("./connection/product-sechma");
 var cors = require("cors");
 console.log(contactSechma);
 
@@ -41,6 +42,28 @@ app.post("/submit", (req, res) => {
   );
 });
 
+// Product Form
+app.post("/Product", (req, res) => {
+  const { Productname, Color, Size, Aboutitem, Price, Quantity, Image, Status } = req.body;
+
+  const sql =
+    "INSERT INTO Products (Productname, Color, Size, Aboutitem, Price, Quantity, Image, Status) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+    console.log("sql", sql);
+    
+  ProductSechma.query(
+    sql,
+    [Productname, Color, Size, Aboutitem, Price, Quantity, Image, Status],
+    (err, result) => {
+      if (err) {
+
+        console.error("Insert error:", err);
+        return res.status(500).send("Error saving message");
+      }
+      res.status(200).send("Message received");
+    }
+  );
+});
+
 // Contact Form find
 app.get("/find", (req, res) => {
   contactSechma.query("SELECT * FROM messages", (err, result) => {
@@ -51,6 +74,18 @@ app.get("/find", (req, res) => {
     res.json(result);
   });
 });
+
+// Product Form find
+app.get("/Productfind", (req, res) => {
+  contactSechma.query("SELECT * FROM Products", (err, result) => {
+    if (err) {
+      console.error("Error fetching messages:", err);
+      return res.status(500).send("Error fetching messages");
+    }
+    res.json(result);
+  });
+});
+
 // Contact Form delete
 app.delete("/delete/:id", (req, res) => {
   const id = req.params.id;

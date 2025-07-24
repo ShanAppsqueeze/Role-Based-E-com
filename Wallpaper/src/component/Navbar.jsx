@@ -1,7 +1,6 @@
-import { useState } from 'react';
-import { Menu, X, Moon, Sun } from 'lucide-react';
-import { Link, NavLink  } from 'react-router-dom';
-
+import { useState } from "react";
+import { Menu, X, Moon, Sun } from "lucide-react";
+import { Link, NavLink } from "react-router-dom";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -11,13 +10,16 @@ export default function Navbar() {
   const toggleDarkMode = () => setDarkMode(!darkMode);
 
   return (
-    <nav className={`${darkMode ? 'dark' : ''}`}>
+    <nav className={`${darkMode ? "dark" : ""}`}>
       <div className="bg-white dark:bg-gray-900 shadow-md">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
             {/* Logo/Brand */}
             <div className="flex-shrink-0 flex items-center">
-              <Link to="/" className="text-xl font-bold text-indigo-600 dark:text-indigo-400">
+              <Link
+                to="/"
+                className="text-xl font-bold text-indigo-600 dark:text-indigo-400"
+              >
                 YourLogo
               </Link>
             </div>
@@ -33,6 +35,13 @@ export default function Navbar() {
                 </NavLink>
 
                 <NavLink
+                  to="/product"
+                  className="text-gray-900 dark:text-white hover:bg-indigo-50 dark:hover:bg-gray-800 px-3 py-2 rounded-md text-sm font-medium transition duration-300"
+                >
+                  Products
+                </NavLink>
+
+                <NavLink
                   to="/about"
                   className="text-gray-900 dark:text-white hover:bg-indigo-50 dark:hover:bg-gray-800 px-3 py-2 rounded-md text-sm font-medium transition duration-300"
                 >
@@ -45,14 +54,14 @@ export default function Navbar() {
                 >
                   Services
                 </NavLink>
-                
+
                 <NavLink
                   to="/contact"
                   className="text-gray-900 dark:text-white hover:bg-indigo-50 dark:hover:bg-gray-800 px-3 py-2 rounded-md text-sm font-medium transition duration-300"
                 >
                   Contact
                 </NavLink>
-                
+
                 {/* Dark mode toggle */}
                 <button
                   onClick={toggleDarkMode}
@@ -60,7 +69,7 @@ export default function Navbar() {
                 >
                   {darkMode ? <Sun size={20} /> : <Moon size={20} />}
                 </button>
-                
+
                 {/* CTA Button */}
                 <Link
                   to="/get-started"

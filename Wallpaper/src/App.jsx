@@ -8,6 +8,8 @@ import About from "./component/About";
 import Services from "./component/Services";
 import Contact from "./component/Contact";
 import AdminContactDashboard from "./Dashboard/ContactPage";
+import AdminProductDashboard from "./Dashboard/ProductsPage";
+import Product from "./component/Product";
 
 function App() {
   return (
@@ -51,6 +53,7 @@ function MainContent() {
       <Route path="/about" element={<About />} />
       <Route path="/services" element={<Services />} />
       <Route path="/contact" element={<Contact />} />
+      <Route path="/product" element={<Product />} />
     </Routes>
   );
 }
@@ -60,6 +63,7 @@ function AdminLayout() {
   return (
     <Routes>
       <Route path="/contactPage" element={<AdminContactDashboard />} />
+      <Route path="/productsPage" element={<AdminProductDashboard />} />
       {/* Add other admin routes here */}
     </Routes>
   );
